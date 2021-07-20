@@ -1,0 +1,298 @@
+
+<!-- ********* andrea.barontini@bybaro.it - 2021 ********** -->
+
+<decoder name="clearpass">
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_\S+ \d+ \d+ \d+ </prematch>
+</decoder>
+
+
+
+<!-- ********* RADACCT START ********** -->
+
+<decoder name="clearpass-radacct-start-1">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,ip_address=\S*,service_type=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,acct_authentic=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),ip_address=(\S*),service_type=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,ip_address,service_type,acct_status_type,acct_delay_time,acct_session_id,acct_authentic,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-start-2">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,service_type=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,acct_authentic=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),service_type=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,service_type,acct_status_type,acct_delay_time,acct_session_id,acct_authentic,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-start-3">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,calling_station_id=\.*,service_type=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,acct_authentic=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),calling_station_id=(\.*),service_type=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,calling_station_id,service_type,acct_status_type,acct_delay_time,acct_session_id,acct_authentic,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-start-4">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,ip_address=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,acct_authentic=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),ip_address=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,ip_address,acct_status_type,acct_delay_time,acct_session_id,acct_authentic,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-start-5">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,ip_address=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),ip_address=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,ip_address,acct_status_type,acct_delay_time,acct_session_id,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-start-6">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,ip_address=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,acct_authentic=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),ip_address=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,ip_address,acct_status_type,acct_delay_time,acct_session_id,acct_authentic,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-start-7">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,acct_authentic=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,acct_status_type,acct_delay_time,acct_session_id,acct_authentic,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-start-8">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,ip_address=\S*,acct_status_type=\S*,acct_session_id=\.*,acct_authentic=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),ip_address=(\S*),acct_status_type=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,ip_address,acct_status_type,acct_session_id,acct_authentic,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-start-9">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port_type=\S*,calling_station_id=\.*,ip_address=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),ip_address=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port_type,calling_station_id,ip_address,acct_status_type,acct_delay_time,acct_session_id,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-start-10">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port_type=\S*,ip_address=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port_type=(\S*),ip_address=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port_type,ip_address,acct_status_type,acct_delay_time,acct_session_id,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-start-11">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,ip_address=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),ip_address=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,ip_address,acct_status_type,acct_delay_time,acct_session_id,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-start-12">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,calling_station_id=\.*,ip_address=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,acct_authentic=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),calling_station_id=(\.*),ip_address=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,calling_station_id,ip_address,acct_status_type,acct_delay_time,acct_session_id,acct_authentic,timestamp</order>
+</decoder>
+
+
+
+<!-- ********* RADACCT STOP ********** -->
+
+<decoder name="clearpass-radacct-stop-1">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,ip_address=\S*,service_type=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_input_octets=\S*,acct_output_octets=\S*,acct_input_packets=\S*,acct_output_packets=\S*,acct_session_id=\.*,acct_authentic=\S*,acct_session_time=\S*,acct_terminate_cause=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),ip_address=(\S*),service_type=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_input_octets=(\S*),acct_output_octets=(\S*),acct_input_packets=(\S*),acct_output_packets=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),acct_session_time=(\S*),acct_terminate_cause=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,ip_address,service_type,acct_status_type,acct_delay_time,acct_input_octets,acct_output_octets,acct_input_packets,acct_output_packets,acct_session_id,acct_authentic,acct_session_time,acct_terminate_cause,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-stop-2">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,ip_address=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_input_octets=\S*,acct_output_octets=\S*,acct_input_packets=\S*,acct_output_packets=\S*,acct_session_id=\.*,acct_session_time=\S*,acct_terminate_cause=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),ip_address=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_input_octets=(\S*),acct_output_octets=(\S*),acct_input_packets=(\S*),acct_output_packets=(\S*),acct_session_id=(\.*),acct_session_time=(\S*),acct_terminate_cause=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,ip_address,acct_status_type,acct_delay_time,acct_input_octets,acct_output_octets,acct_input_packets,acct_output_packets,acct_session_id,acct_session_time,acct_terminate_cause,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-stop-3">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,service_type=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_input_octets=\S*,acct_output_octets=\S*,acct_input_packets=\S*,acct_output_packets=\S*,acct_session_id=\.*,acct_authentic=\S*,acct_session_time=\S*,acct_terminate_cause=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),service_type=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_input_octets=(\S*),acct_output_octets=(\S*),acct_input_packets=(\S*),acct_output_packets=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),acct_session_time=(\S*),acct_terminate_cause=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,service_type,acct_status_type,acct_delay_time,acct_input_octets,acct_output_octets,acct_input_packets,acct_output_packets,acct_session_id,acct_authentic,acct_session_time,acct_terminate_cause,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-stop-4">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,ip_address=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_input_octets=\S*,acct_output_octets=\S*,acct_input_packets=\S*,acct_output_packets=\S*,acct_session_id=\.*,acct_session_time=\S*,acct_terminate_cause=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),ip_address=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_input_octets=(\S*),acct_output_octets=(\S*),acct_input_packets=(\S*),acct_output_packets=(\S*),acct_session_id=(\.*),acct_session_time=(\S*),acct_terminate_cause=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,ip_address,acct_status_type,acct_delay_time,acct_input_octets,acct_output_octets,acct_input_packets,acct_output_packets,acct_session_id,acct_session_time,acct_terminate_cause,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-stop-5">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,calling_station_id=\.*,service_type=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_input_octets=\S*,acct_output_octets=\S*,acct_input_packets=\S*,acct_output_packets=\S*,acct_session_id=\.*,acct_authentic=\S*,acct_session_time=\S*,acct_terminate_cause=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),calling_station_id=(\.*),service_type=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_input_octets=(\S*),acct_output_octets=(\S*),acct_input_packets=(\S*),acct_output_packets=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),acct_session_time=(\S*),acct_terminate_cause=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,calling_station_id,service_type,acct_status_type,acct_delay_time,acct_input_octets,acct_output_octets,acct_input_packets,acct_output_packets,acct_session_id,acct_authentic,acct_session_time,acct_terminate_cause,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-stop-6">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,ip_address=\S*,acct_status_type=\S*,acct_input_octets=\S*,acct_output_octets=\S*,acct_session_id=\.*,acct_session_time=\S*,acct_terminate_cause=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),ip_address=(\S*),acct_status_type=(\S*),acct_input_octets=(\S*),acct_output_octets=(\S*),acct_session_id=(\.*),acct_session_time=(\S*),acct_terminate_cause=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,ip_address,acct_status_type,acct_input_octets,acct_output_octets,acct_session_id,acct_session_time,acct_terminate_cause,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-stop-7">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,acct_authentic=\S*,acct_session_time=\S*,acct_terminate_cause=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),acct_session_time=(\S*),acct_terminate_cause=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,acct_status_type,acct_delay_time,acct_session_id,acct_authentic,acct_session_time,acct_terminate_cause,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-stop-8">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port_type=\S*,ip_address=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,acct_session_time=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port_type=(\S*),ip_address=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),acct_session_time=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port_type,ip_address,acct_status_type,acct_delay_time,acct_session_id,acct_session_time,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-stop-9">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,ip_address=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_input_octets=\S*,acct_output_octets=\S*,acct_input_packets=\S*,acct_output_packets=\S*,acct_session_id=\.*,acct_authentic=\S*,acct_session_time=\S*,acct_terminate_cause=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),ip_address=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_input_octets=(\S*),acct_output_octets=(\S*),acct_input_packets=(\S*),acct_output_packets=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),acct_session_time=(\S*),acct_terminate_cause=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,nas_port_type,calling_station_id,ip_address,acct_status_type,acct_delay_time,acct_input_octets,acct_output_octets,acct_input_packets,acct_output_packets,acct_session_id,acct_authentic,acct_session_time,acct_terminate_cause,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-stop-10">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,ip_address=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,acct_session_time=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),ip_address=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),acct_session_time=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,ip_address,acct_status_type,acct_delay_time,acct_session_id,acct_session_time,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-stop-11">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port_type=\S*,calling_station_id=\.*,service_type=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,acct_authentic=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),service_type=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port_type,calling_station_id,service_type,acct_status_type,acct_delay_time,acct_session_id,acct_authentic,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-stop-12">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,calling_station_id=\.*,acct_status_type=\S*,acct_delay_time=\S*,acct_input_octets=\S*,acct_output_octets=\S*,acct_input_packets=\S*,acct_output_packets=\S*,acct_session_id=\.*,acct_session_time=\S*,acct_terminate_cause=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),calling_station_id=(\.*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_input_octets=(\S*),acct_output_octets=(\S*),acct_input_packets=(\S*),acct_output_packets=(\S*),acct_session_id=(\.*),acct_session_time=(\S*),acct_terminate_cause=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,calling_station_id,acct_status_type,acct_delay_time,acct_input_octets,acct_output_octets,acct_input_packets,acct_output_packets,acct_session_id,acct_session_time,acct_terminate_cause,timestamp</order>
+</decoder>
+
+
+
+<!-- ********* RADACCT INTERIM ********** -->
+
+<decoder name="clearpass-radacct-interim">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,ip_address=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_input_octets=\S*,acct_output_octets=\S*,acct_input_packets=\S*,acct_output_packets=\S*,acct_session_id=\.*,acct_session_time=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),ip_address=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_input_octets=(\S*),acct_output_octets=(\S*),acct_input_packets=(\S*),acct_output_packets=(\S*),acct_session_id=(\.*),acct_session_time=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,ip_address,acct_status_type,acct_delay_time,acct_input_octets,acct_output_octets,acct_input_packets,acct_output_packets,acct_session_id,acct_session_time,timestamp</order>
+</decoder>
+
+
+
+<!-- ********* RADACCT DETAIL ********** -->
+
+<decoder name="clearpass-radacct-detail-1">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting_Detail \d+ \d+ \d+ id=\S*,session_id=\.*,acct_session_id=\.*,type=\S*,attr_name=\S*,attr_value=\.*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting_Detail) (\d+) (\d+) (\d+) id=(\S*),session_id=(\.*),acct_session_id=(\.*),type=(\S*),attr_name=(\S*),attr_value=(\.*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,id,session_id,acct_session_id,type,attr_name,attr_value,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-detail-2">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting_Detail \d+ \d+ \d+ id=\S*,session_id=\.*,acct_session_id=\.*,type=\S*,attr_name=\S*,attr_value=\.*,\.*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting_Detail) (\d+) (\d+) (\d+) id=(\S*),session_id=(\.*),acct_session_id=(\.*),type=(\S*),attr_name=(\S*),attr_value=(\.*,\.*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,id,session_id,acct_session_id,type,attr_name,attr_value,timestamp</order>
+</decoder>
+
+
+
+<!-- ********* RADIUS SESSION ********** -->
+
+<decoder name="clearpass-radius-session-1">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Session \d+ \d+ \d+ session_id=\.*,user_name=\.*,service_name=\S*,auth_method=\S*,auth_source=\S*,nas_ip=\S*,nas_port=\S*,end_host_id=\S*,request_status=\S*,error_code=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Session) (\d+) (\d+) (\d+) session_id=(\.*),user_name=(\.*),service_name=(\S*),auth_method=(\S*),auth_source=(\S*),nas_ip=(\S*),nas_port=(\S*),end_host_id=(\S*),request_status=(\S*),error_code=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,session_id,user_name,service_name,auth_method,auth_source,nas_ip,nas_port,end_host_id,request_status,error_code,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radius-session-2">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Session \d+ \d+ \d+ session_id=\.*,user_name=\.*,service_name=\S*,auth_method=\S*,auth_source=\S*,nas_ip=\S*,end_host_id=\S*,request_status=\S*,error_code=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Session) (\d+) (\d+) (\d+) session_id=(\.*),user_name=(\.*),service_name=(\S*),auth_method=(\S*),auth_source=(\S*),nas_ip=(\S*),end_host_id=(\S*),request_status=(\S*),error_code=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,session_id,user_name,service_name,auth_method,auth_source,nas_ip,end_host_id,request_status,error_code,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radius-session-3">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Session \d+ \d+ \d+ session_id=\.*,user_name=\.*,service_name=\S*,auth_method=\S*,auth_source=\S*,nas_ip=\S*,request_status=\S*,error_code=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Session) (\d+) (\d+) (\d+) session_id=(\.*),user_name=(\.*),service_name=(\S*),auth_method=(\S*),auth_source=(\S*),nas_ip=(\S*),request_status=(\S*),error_code=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,session_id,user_name,service_name,auth_method,auth_source,nas_ip,request_status,error_code,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radius-session-4">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Session \d+ \d+ \d+ session_id=\.*,user_name=\.*,service_name=\S*,auth_source=\S*,nas_ip=\S*,nas_port=\S*,end_host_id=\S*,request_status=\S*,error_code=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Session) (\d+) (\d+) (\d+) session_id=(\.*),user_name=(\.*),service_name=(\S*),auth_source=(\S*),nas_ip=(\S*),nas_port=(\S*),end_host_id=(\S*),request_status=(\S*),error_code=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,session_id,user_name,service_name,auth_source,nas_ip,nas_port,end_host_id,request_status,error_code,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radius-session-5">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Session \d+ \d+ \d+ session_id=\.*,user_name=\.*,service_name=\S*,auth_method=\S*,auth_source=\S*,nas_ip=\S*,nas_port=\S*,request_status=\S*,error_code=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Session) (\d+) (\d+) (\d+) session_id=(\.*),user_name=(\.*),service_name=(\S*),auth_method=(\S*),auth_source=(\S*),nas_ip=(\S*),nas_port=(\S*),request_status=(\S*),error_code=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,session_id,user_name,service_name,auth_method,auth_source,nas_ip,nas_port,request_status,error_code,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radius-session-6">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Session \d+ \d+ \d+ session_id=\.*,user_name=\.*,service_name=\S*,auth_source=\S*,nas_ip=\S*,end_host_id=\S*,request_status=\S*,error_code=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Session) (\d+) (\d+) (\d+) session_id=(\.*),user_name=(\.*),service_name=(\S*),auth_source=(\S*),nas_ip=(\S*),end_host_id=(\S*),request_status=(\S*),error_code=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,session_id,user_name,service_name,auth_source,nas_ip,end_host_id,request_status,error_code,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radius-session-7">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Session \d+ \d+ \d+ session_id=\.*,user_name=\.*,service_name=\S*,auth_source=\S*,nas_ip=\S*,nas_port=\S*,request_status=\S*,error_code=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Session) (\d+) (\d+) (\d+) session_id=(\.*),user_name=(\.*),service_name=(\S*),auth_source=(\S*),nas_ip=(\S*),nas_port=(\S*),request_status=(\S*),error_code=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,session_id,user_name,service_name,auth_source,nas_ip,nas_port,request_status,error_code,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radius-session-8">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Session \d+ \d+ \d+ session_id=\.*,user_name=\.*,auth_source=\S*,nas_ip=\S*,nas_port=\S*,end_host_id=\S*,request_status=\S*,error_code=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Session) (\d+) (\d+) (\d+) session_id=(\.*),user_name=(\.*),auth_source=(\S*),nas_ip=(\S*),nas_port=(\S*),end_host_id=(\S*),request_status=(\S*),error_code=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,session_id,user_name,auth_source,nas_ip,nas_port,end_host_id,request_status,error_code,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radius-session-9">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Session \d+ \d+ \d+ session_id=\.*,user_name=\.*,service_name=\S*,auth_source=\S*,nas_ip=\S*,request_status=\S*,error_code=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Session) (\d+) (\d+) (\d+) session_id=(\.*),user_name=(\.*),service_name=(\S*),auth_source=(\S*),nas_ip=(\S*),request_status=(\S*),error_code=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,session_id,user_name,service_name,auth_source,nas_ip,request_status,error_code,timestamp</order>
+</decoder>
+
+
+
+<!-- ********* TACACS SESSION ********** -->
+
+<decoder name="clearpass-tacacs-session-1">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_TACACS_Session \d+ \d+ \d+ server_id=\.*,user_session_id=\.*,session_id=\.*,request_type=\S*,user_name=\.*,nas_ip=\S*,port=\S*,remote_address=\.*,priv_level=\S*,authen_action=\S*,authen_type=\S*,authen_method=\S*,authen_service=\S*,service_name=\.*,auth_source=\.*,tips_roles=\.*,tacacs_profiles=\.*,request_status=\S*,error_code=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_TACACS_Session) (\d+) (\d+) (\d+) server_id=(\.*),user_session_id=(\.*),session_id=(\.*),request_type=(\S*),user_name=(\.*),nas_ip=(\S*),port=(\S*),remote_address=(\.*),priv_level=(\S*),authen_action=(\S*),authen_type=(\S*),authen_method=(\S*),authen_service=(\S*),service_name=(\.*),auth_source=(\.*),tips_roles=(\.*),tacacs_profiles=(\.*),request_status=(\S*),error_code=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,server_id,user_session_id,session_id,request_type,user_name,nas_ip,port,remote_address,priv_level,authen_action,authen_type,authen_method,authen_service,service_name,auth_source,tips_roles,tacacs_profiles,request_status,error_code,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-tacacs-session-2">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_TACACS_Session \d+ \d+ \d+ server_id=\.*,user_session_id=\.*,session_id=\.*,request_type=\S*,user_name=\.*,nas_ip=\S*,port=\S*,remote_address=\.*,priv_level=\S*,authen_action=\S*,authen_type=\S*,authen_method=\S*,authen_service=\S*,service_name=\.*,auth_source=\.*,tips_roles=\.*,\.*,tacacs_profiles=\.*,request_status=\S*,error_code=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_TACACS_Session) (\d+) (\d+) (\d+) server_id=(\.*),user_session_id=(\.*),session_id=(\.*),request_type=(\S*),user_name=(\.*),nas_ip=(\S*),port=(\S*),remote_address=(\.*),priv_level=(\S*),authen_action=(\S*),authen_type=(\S*),authen_method=(\S*),authen_service=(\S*),service_name=(\.*),auth_source=(\.*),tips_roles=(\.*,\.*),tacacs_profiles=(\.*),request_status=(\S*),error_code=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,server_id,user_session_id,session_id,request_type,user_name,nas_ip,port,remote_address,priv_level,authen_action,authen_type,authen_method,authen_service,service_name,auth_source,tips_roles,tacacs_profiles,request_status,error_code,timestamp</order>
+</decoder>
+
+
