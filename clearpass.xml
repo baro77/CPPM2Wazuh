@@ -277,6 +277,13 @@
   <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,session_id,user_name,service_name,auth_source,nas_ip,request_status,error_code,timestamp</order>
 </decoder>
 
+<decoder name="clearpass-radius-session-10">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Session \d+ \d+ \d+ session_id=\.*,user_name=\.*,auth_source=\S*,nas_ip=\S*,end_host_id=\S*,request_status=\S*,error_code=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Session) (\d+) (\d+) (\d+) session_id=(\.*),user_name=(\.*),auth_source=(\S*),nas_ip=(\S*),end_host_id=(\S*),request_status=(\S*),error_code=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,session_id,user_name,auth_source,nas_ip,end_host_id,request_status,error_code,timestamp</order>
+</decoder>
+
 
 
 <!-- ********* TACACS SESSION ********** -->
