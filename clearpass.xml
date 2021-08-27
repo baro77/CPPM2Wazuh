@@ -93,6 +93,13 @@
   <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,calling_station_id,ip_address,acct_status_type,acct_delay_time,acct_session_id,acct_authentic,timestamp</order>
 </decoder>
 
+<decoder name="clearpass-radacct-start-13">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,ip_address=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),ip_address=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,ip_address,acct_status_type,acct_delay_time,acct_session_id,timestamp</order>
+</decoder>
+
 
 
 <!-- ********* RADACCT STOP ********** -->
@@ -207,6 +214,13 @@
   <parent>clearpass</parent>
   <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting_Detail \d+ \d+ \d+ id=\S*,session_id=\.*,acct_session_id=\.*,type=\S*,attr_name=\S*,attr_value=\.*,\.*,timestamp=\S*</prematch>
   <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting_Detail) (\d+) (\d+) (\d+) id=(\S*),session_id=(\.*),acct_session_id=(\.*),type=(\S*),attr_name=(\S*),attr_value=(\.*,\.*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,id,session_id,acct_session_id,type,attr_name,attr_value,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-detail-3">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting_Detail \d+ \d+ \d+ id=\S*,session_id=\.*,acct_session_id=\.*,type=\S*,attr_name=\S*,attr_value=\.*,\.*,\.*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting_Detail) (\d+) (\d+) (\d+) id=(\S*),session_id=(\.*),acct_session_id=(\.*),type=(\S*),attr_name=(\S*),attr_value=(\.*,\.*,\.*),timestamp=(\S*)</regex>
   <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,id,session_id,acct_session_id,type,attr_name,attr_value,timestamp</order>
 </decoder>
 
