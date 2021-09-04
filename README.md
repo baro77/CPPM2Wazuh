@@ -1,6 +1,6 @@
 # CPPM2Wazuh
 
-[CPPM plus Wazuh logo](CPPMwazuh.png)
+![CPPM plus Wazuh logo](CPPMwazuh.png)
 
 Aruba's ClearPass Policy Manager logs can be easily exported to ELK thanks to the great work done by @njohnsn with his [ClearPassAndELK](https://github.com/njohnsn/ClearPassAndELK) - thanks Neil :+1:
 
