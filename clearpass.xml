@@ -100,6 +100,13 @@
   <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,ip_address,acct_status_type,acct_delay_time,acct_session_id,timestamp</order>
 </decoder>
 
+<decoder name="clearpass-radacct-start-14">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,service_type=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_session_id=\.*,acct_authentic=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),service_type=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,service_type,acct_status_type,acct_delay_time,acct_session_id,acct_authentic,timestamp</order>
+</decoder>
+
 
 
 <!-- ********* RADACCT STOP ********** -->
@@ -186,6 +193,13 @@
   <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,user_name=\.*,nas_ip=\S*,calling_station_id=\.*,acct_status_type=\S*,acct_delay_time=\S*,acct_input_octets=\S*,acct_output_octets=\S*,acct_input_packets=\S*,acct_output_packets=\S*,acct_session_id=\.*,acct_session_time=\S*,acct_terminate_cause=\S*,timestamp=\S*</prematch>
   <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),user_name=(\.*),nas_ip=(\S*),calling_station_id=(\.*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_input_octets=(\S*),acct_output_octets=(\S*),acct_input_packets=(\S*),acct_output_packets=(\S*),acct_session_id=(\.*),acct_session_time=(\S*),acct_terminate_cause=(\S*),timestamp=(\S*)</regex>
   <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,user_name,nas_ip,calling_station_id,acct_status_type,acct_delay_time,acct_input_octets,acct_output_octets,acct_input_packets,acct_output_packets,acct_session_id,acct_session_time,acct_terminate_cause,timestamp</order>
+</decoder>
+
+<decoder name="clearpass-radacct-stop-13">
+  <parent>clearpass</parent>
+  <prematch>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ \d+.\d+.\d+.\d+ CPPM_to_ELK_RADIUS_Accounting \d+ \d+ \d+ seq_num=\d*,session_id=\.*,nas_ip=\S*,nas_port=\S*,nas_port_type=\S*,calling_station_id=\.*,called_station_id=\.*,service_type=\S*,acct_status_type=\S*,acct_delay_time=\S*,acct_input_octets=\S*,acct_output_octets=\S*,acct_input_packets=\S*,acct_output_packets=\S*,acct_session_id=\.*,acct_authentic=\S*,acct_session_time=\S*,acct_terminate_cause=\S*,timestamp=\S*</prematch>
+  <regex>^\d+-\d+-\d+ \d+:\d+:\d+,\d+ (\d+.\d+.\d+.\d+) (CPPM_to_ELK_RADIUS_Accounting) (\d+) (\d+) (\d+) seq_num=(\d*),session_id=(\.*),nas_ip=(\S*),nas_port=(\S*),nas_port_type=(\S*),calling_station_id=(\.*),called_station_id=(\.*),service_type=(\S*),acct_status_type=(\S*),acct_delay_time=(\S*),acct_input_octets=(\S*),acct_output_octets=(\S*),acct_input_packets=(\S*),acct_output_packets=(\S*),acct_session_id=(\.*),acct_authentic=(\S*),acct_session_time=(\S*),acct_terminate_cause=(\S*),timestamp=(\S*)</regex>
+  <order>CPPM_IP,CPPM_Syslog_ExportFilter,CPPM_Syslog_PID,CPPM_NumOfMsgs,CPPM_MsgNum,seq_num,session_id,nas_ip,nas_port,nas_port_type,calling_station_id,called_station_id,service_type,acct_status_type,acct_delay_time,acct_input_octets,acct_output_octets,acct_input_packets,acct_output_packets,acct_session_id,acct_authentic,acct_session_time,acct_terminate_cause,timestamp</order>
 </decoder>
 
 
